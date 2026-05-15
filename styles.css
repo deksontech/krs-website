@@ -989,6 +989,48 @@ input:focus, textarea:focus { outline: 3px solid rgba(237, 139, 34, .18); border
   }
 }
 
+/* Updated KRS leaf logo treatment */
+.brand img {
+  object-fit: contain;
+  border-radius: 12px;
+  padding: 4px;
+  background: rgba(255,255,255,.9);
+}
+
+.v2-system-logo,
+.platform-proof img,
+.footer-brand img,
+.app-header img,
+.closing-card img,
+.profile-card img,
+.contact-card img,
+.hero-logo,
+.hero-map-card img {
+  object-fit: contain;
+  border-radius: 16px;
+  padding: 8px;
+  background: rgba(255,255,255,.92);
+}
+
+.v2-system-logo,
+.platform-proof img,
+.footer-brand img,
+.closing-card img {
+  border-radius: 18px;
+}
+
+.app-header img {
+  border-radius: 12px;
+  padding: 3px;
+}
+
+@media (min-width: 1181px) {
+  .v2-system-logo {
+    width: 132px;
+    height: 132px;
+  }
+}
+
 @media (max-width: 1120px) {
   .v2 .site-header::after {
     content: "";
