@@ -6996,3 +6996,320 @@ body.v2 .platform-proof span {
     font-size: 25px !important;
   }
 }
+
+/* V34 premium refinement: typography, diagrams, report cards, trust and mobile CTA */
+body.v2 h1,
+body.v2 .platform-hero h1,
+body.v2 .page-hero h1,
+body.v2 .krs-hero-content h1 {
+  font-weight: 800 !important;
+  letter-spacing: 0 !important;
+}
+
+body.v2 .platform-hero h1 {
+  font-size: clamp(48px, 5.2vw, 76px) !important;
+  line-height: 1.02 !important;
+}
+
+body.v2 .page-hero h1 {
+  font-size: clamp(42px, 4.7vw, 64px) !important;
+  line-height: 1.04 !important;
+}
+
+body.v2 .section-heading h2 {
+  font-size: clamp(34px, 3.6vw, 56px) !important;
+  line-height: 1.06 !important;
+}
+
+body.v2 .platform-hero p,
+body.v2 .page-hero p,
+body.v2 .section-heading p {
+  color: #2D4033 !important;
+  line-height: 1.72 !important;
+}
+
+body.v2 .trusted-for-strip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(14px, 3vw, 34px);
+  padding: 18px clamp(22px, 6vw, 90px);
+  border-block: 1px solid rgba(15,122,59,.12);
+  background:
+    linear-gradient(90deg, rgba(255,248,234,.88), rgba(255,255,255,.92), rgba(232,251,241,.88));
+  color: #083B20;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+body.v2 .trusted-for-strip::-webkit-scrollbar {
+  display: none;
+}
+
+body.v2 .trusted-for-strip span {
+  flex: 0 0 auto;
+  color: #B95F0D;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+body.v2 .trusted-for-strip strong {
+  flex: 0 0 auto;
+  position: relative;
+  font-size: 14px;
+  font-weight: 900;
+}
+
+body.v2 .trusted-for-strip strong::before {
+  content: "";
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  margin-right: 9px;
+  border-radius: 50%;
+  background: #18A558;
+  box-shadow: 0 0 0 4px rgba(24,165,88,.12);
+}
+
+body.v2 .platform-proof {
+  min-height: 390px !important;
+  justify-content: flex-start !important;
+}
+
+body.v2 .platform-proof::after {
+  display: none !important;
+}
+
+body.v2 .platform-proof > img + strong,
+body.v2 .platform-proof > strong:first-child {
+  margin-top: auto !important;
+}
+
+body.v2 .proof-diagram {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  width: 100%;
+  margin-top: 12px;
+}
+
+body.v2 .diagram-node {
+  display: grid;
+  gap: 6px;
+  min-height: 86px;
+  padding: 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(15,122,59,.13);
+  background: rgba(255,255,255,.78);
+  box-shadow: 0 10px 28px rgba(18,32,21,.06);
+}
+
+body.v2 .diagram-node small {
+  color: #B95F0D;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .12em;
+}
+
+body.v2 .diagram-node b {
+  color: #083B20;
+  font-size: 14px;
+  line-height: 1.18;
+}
+
+body.v2 .proposal-card,
+body.v2 .docs-card {
+  position: relative !important;
+  min-height: 310px !important;
+  padding: 30px !important;
+  border-radius: 10px !important;
+  background:
+    linear-gradient(90deg, rgba(15,122,59,.18) 0 10px, transparent 10px),
+    linear-gradient(145deg, #FFFFFF, #FFF8EA 82%) !important;
+  box-shadow:
+    0 24px 58px rgba(18,32,21,.10),
+    inset 0 1px 0 rgba(255,255,255,.9) !important;
+}
+
+body.v2 .proposal-card::before,
+body.v2 .docs-card::before {
+  content: "";
+  position: absolute;
+  right: 24px;
+  top: 24px;
+  width: 56px;
+  height: 70px;
+  border-radius: 6px;
+  background:
+    linear-gradient(180deg, rgba(15,122,59,.12), rgba(246,160,51,.12)),
+    repeating-linear-gradient(180deg, rgba(8,59,32,.32) 0 2px, transparent 2px 11px);
+  opacity: .7;
+}
+
+body.v2 .proposal-card span,
+body.v2 .docs-card span {
+  width: max-content !important;
+  border-radius: 999px !important;
+}
+
+body.v2 .proposal-card strong,
+body.v2 .docs-card strong {
+  max-width: 78%;
+  margin-top: auto;
+}
+
+body.v2 .proposal-card::after,
+body.v2 .docs-card::after {
+  content: "Download PDF";
+  position: absolute;
+  left: 30px;
+  bottom: 24px;
+  color: #0F7A3B;
+  font-size: 13px;
+  font-weight: 900;
+}
+
+body.v2 .proposal-card[href$=".html"]::after {
+  content: "Open Library";
+}
+
+body.v2 .section:nth-of-type(odd):not(.v2-impact-dashboard):not(.control-section):not(.proposal-library) {
+  background-color: rgba(255,248,234,.38);
+}
+
+body.v2 .button {
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+body.v2 .button::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 -80%;
+  width: 60%;
+  transform: skewX(-18deg);
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.28), transparent);
+  transition: left .45s ease;
+}
+
+body.v2 .button:hover::before {
+  left: 120%;
+}
+
+body.v2 .mobile-action-bar {
+  display: none;
+}
+
+@media (max-width: 640px) {
+  body.v2 {
+    padding-bottom: 72px;
+  }
+
+  body.v2 .platform-hero h1,
+  body.v2 .page-hero h1,
+  body.v2 .section-heading h2 {
+    font-size: 30px !important;
+    line-height: 1.1 !important;
+  }
+
+  body.v2 .trusted-for-strip {
+    justify-content: flex-start;
+    padding-inline: 22px;
+  }
+
+  body.v2 .platform-proof {
+    min-height: auto !important;
+  }
+
+  body.v2 .proof-diagram {
+    grid-template-columns: 1fr !important;
+  }
+
+  body.v2 .diagram-node {
+    min-height: 0;
+  }
+
+  body.v2 .proposal-card,
+  body.v2 .docs-card {
+    min-height: 260px !important;
+  }
+
+  body.v2 .proposal-card strong,
+  body.v2 .docs-card strong {
+    max-width: 100%;
+  }
+
+  body.v2 .mobile-action-bar {
+    position: fixed;
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    z-index: 1000;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    padding: 10px;
+    border: 1px solid rgba(15,122,59,.18);
+    border-radius: 16px;
+    background: rgba(255,255,255,.92);
+    box-shadow: 0 18px 50px rgba(18,32,21,.18);
+    backdrop-filter: blur(18px);
+  }
+
+  body.v2 .mobile-action-bar a {
+    min-height: 44px;
+    display: grid;
+    place-items: center;
+    border-radius: 10px;
+    color: #fff;
+    background: #0F7A3B;
+    font-weight: 900;
+    text-decoration: none;
+  }
+
+  body.v2 .mobile-action-bar a + a {
+    color: #122015;
+    background: #F6A033;
+  }
+}
+
+/* V35 mobile containment for premium proof diagrams */
+@media (max-width: 640px) {
+  body.v2 .platform-hero {
+    padding-inline: 22px !important;
+  }
+
+  body.v2 .platform-proof {
+    width: calc(100vw - 64px) !important;
+    max-width: calc(100vw - 64px) !important;
+    min-width: 0 !important;
+    overflow: hidden !important;
+    padding: 24px !important;
+    box-sizing: border-box !important;
+  }
+
+  body.v2 .platform-proof strong,
+  body.v2 .platform-proof span,
+  body.v2 .proof-diagram {
+    max-width: calc(100vw - 118px) !important;
+    white-space: normal !important;
+    overflow-wrap: anywhere !important;
+    word-break: break-word !important;
+  }
+
+  body.v2 .platform-proof strong {
+    font-size: 21px !important;
+  }
+
+  body.v2 .proof-diagram {
+    width: 100% !important;
+  }
+
+  body.v2 .diagram-node {
+    width: 100% !important;
+  }
+}

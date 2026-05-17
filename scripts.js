@@ -68,6 +68,56 @@ document.querySelectorAll('.official-footer').forEach((footer) => {
   footer.appendChild(newsletter);
 });
 
+const pageName = (window.location.pathname.split('/').pop() || 'index.html').toLowerCase();
+
+const diagramMap = {
+  'operating-system.html': ['Procurement', 'Cold Chain', 'Retail Data', 'Farmer Payment'],
+  'farmers-fpo-panchayat.html': ['MSP Contract', 'Collection', 'Storage', 'Direct Payment'],
+  'franchise-retailers.html': ['Daily Supply', 'Cold Crates', 'Digital Billing', 'Repeat Customers'],
+  'cold-room-partners.html': ['Inward Stock', 'Quality Audit', 'Planned Release', 'Payout'],
+  'investors.html': ['Seed Capital', 'Cold Clusters', 'KRS Outlets', 'Data Moat'],
+  'proposal-library.html': ['Profile', 'Pitch Deck', 'Partner Proposals', 'Canvas']
+};
+
+document.querySelectorAll('.platform-proof').forEach((proof) => {
+  if (proof.querySelector('.proof-diagram')) return;
+  const items = diagramMap[pageName] || ['MSP', 'Storage', 'Retail', 'Payments'];
+  const diagram = document.createElement('div');
+  diagram.className = 'proof-diagram';
+  diagram.innerHTML = items.map((item, index) => `
+    <span class="diagram-node">
+      <small>${String(index + 1).padStart(2, '0')}</small>
+      <b>${item}</b>
+    </span>
+  `).join('');
+  proof.appendChild(diagram);
+});
+
+const heroForTrust = document.querySelector('.krs-reference-hero, .platform-hero, .page-hero');
+if (heroForTrust && !document.querySelector('.trusted-for-strip')) {
+  const trustedStrip = document.createElement('section');
+  trustedStrip.className = 'trusted-for-strip';
+  trustedStrip.innerHTML = `
+    <span>Trusted for</span>
+    <strong>District Officials</strong>
+    <strong>Farmer Networks</strong>
+    <strong>Retail Partners</strong>
+    <strong>Cold Room Owners</strong>
+    <strong>Investors</strong>
+  `;
+  heroForTrust.after(trustedStrip);
+}
+
+if (!document.querySelector('.mobile-action-bar')) {
+  const mobileActionBar = document.createElement('div');
+  mobileActionBar.className = 'mobile-action-bar';
+  mobileActionBar.innerHTML = `
+    <a href="tel:+917854954845">Call KRS</a>
+    <a href="contact.html">Contact</a>
+  `;
+  document.body.appendChild(mobileActionBar);
+}
+
 const svgIcon = (paths) => `
   <svg viewBox="0 0 48 48" fill="none" aria-hidden="true" focusable="false">
     ${paths}
