@@ -39,6 +39,15 @@ if (headerElement && !document.querySelector('.top-contact-bar')) {
 }
 
 document.querySelectorAll('.official-footer').forEach((footer) => {
+  const quickLinksHeading = Array.from(footer.querySelectorAll('h3')).find((heading) => heading.textContent.trim().toLowerCase() === 'quick links');
+  const quickLinks = quickLinksHeading?.parentElement;
+  if (quickLinks && !quickLinks.querySelector('a[href="proposal-library.html"]')) {
+    const libraryLink = document.createElement('a');
+    libraryLink.href = 'proposal-library.html';
+    libraryLink.textContent = 'Proposal Library';
+    quickLinks.appendChild(libraryLink);
+  }
+
   if (footer.querySelector('.footer-newsletter')) return;
   const newsletter = document.createElement('div');
   newsletter.className = 'footer-newsletter';
@@ -85,6 +94,25 @@ const icons = {
 };
 
 const iconRules = [
+  ['mission|purpose', 'shield'],
+  ['vision|future|national platform|pan-india', 'growth'],
+  ['operating principle|principle|trust|transparent', 'trace'],
+  ['agriculture & farm operations|farm operations|ground-level', 'farmer'],
+  ['business strategy|finance|commercial|revenue|trading surplus', 'pricing'],
+  ['policy|legal|compliance|fssai', 'government'],
+  ['app development|android|ios|mvp|module', 'app'],
+  ['quality tracking|stock audit|inventory|real-time sales|analytics', 'dashboard'],
+  ['guaranteed inventory|inventory flow|supply chain|sourcing', 'procurement'],
+  ['solar|maintenance|thermal|cold clusters', 'storage'],
+  ['brand & marketing|loyalty|member|customer', 'retail'],
+  ['women entrepreneurs|young entrepreneurs|local entrepreneurs', 'growth'],
+  ['plan|production|controlled', 'training'],
+  ['protect|protection|guarantee|fixed msp|stability', 'shield'],
+  ['preserve|freshness|cold-chain|storage utilisation|cold room', 'storage'],
+  ['move|transport|logistics|on-time|distribution', 'logistics'],
+  ['sell|retail|outlet|store|consumer|franchise|shop|outlet growth', 'retail'],
+  ['district rollout|pilot|odisha|scale|roadmap', 'growth'],
+  ['farmer protection|farmer|fpo|agriculture|harvest|onboarding|income', 'farmer'],
   ['cold|storage|crate|stock', 'storage'],
   ['retail|outlet|store|consumer|franchise|shop', 'retail'],
   ['price|msp|margin|revenue|deposit|fund|bonus|payment|dbt|settlement|finance', 'payment'],
@@ -97,7 +125,6 @@ const iconRules = [
   ['investor|scale|growth|expansion|roadmap|market|pan-india|odisha', 'growth'],
   ['traceability|qr|audit|transparent', 'trace'],
   ['shield|protection|guarantee|stability|readiness|controlled', 'shield'],
-  ['farmer|fpo|agriculture|harvest|onboarding|income', 'farmer'],
   ['procurement|produce|trading|supply', 'procurement']
 ];
 
@@ -140,7 +167,7 @@ const enhanceCardsWithIcons = () => {
       titleElement?.textContent || ''
     ].join(' ');
 
-    const iconName = pickIcon(label);
+    const iconName = card.dataset.icon || pickIcon(label);
     const existing = card.querySelector(':scope > .icon, :scope > .dashboard-icon');
     const tile = existing || document.createElement('span');
     tile.classList.add('krs-icon-tile');
