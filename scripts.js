@@ -28,11 +28,10 @@ if (headerElement && !document.querySelector('.top-contact-bar')) {
   const topBar = document.createElement('div');
   topBar.className = 'top-contact-bar';
   topBar.innerHTML = `
-    <span>Kishan Retail Sathi Pvt Ltd</span>
+    <span>Kishan Retail Sathi</span>
     <div class="top-contact-group">
       <span>Call: +91-7854954845</span>
       <span>Email: info@kisanretailsathi.com</span>
-      <span>Odisha, India</span>
     </div>
   `;
   headerElement.before(topBar);
