@@ -38,6 +38,49 @@ if (headerElement && !document.querySelector('.top-contact-bar')) {
 }
 
 document.querySelectorAll('.official-footer').forEach((footer) => {
+  if (!document.querySelector('.app-coming-soon')) {
+    const appSection = document.createElement('section');
+    appSection.className = 'app-coming-soon reveal is-visible';
+    appSection.id = 'app-coming-soon';
+    appSection.innerHTML = `
+      <div class="app-launch-copy">
+        <span class="eyebrow">KRS App Launch</span>
+        <h2>App coming soon on Play Store and App Store.</h2>
+        <p>Farmer onboarding, MSP broadcast, cold-room stock visibility, retailer ordering, and pilot dashboards will soon be accessible through the KRS digital platform.</p>
+      </div>
+      <div class="app-store-panel" aria-label="KRS app store availability">
+        <div class="app-phone-preview">
+          <span class="phone-status"></span>
+          <strong>KRS App</strong>
+          <small>Farm-to-fork operating system</small>
+          <div class="phone-lines"><span></span><span></span><span></span></div>
+        </div>
+        <div class="store-badge-row">
+          <span class="store-badge" role="img" aria-label="Coming soon on Google Play">
+            <svg viewBox="0 0 42 42" aria-hidden="true" focusable="false">
+              <path d="M8 5l20 16L8 37z" fill="#18A558"/>
+              <path d="M28 21l6-5c1.7 1 2.7 2.6 2.7 5S35.7 25 34 26z" fill="#F6A033"/>
+              <path d="M8 5l20 16-7 6z" fill="#45C7F4"/>
+              <path d="M8 37l13-10 7-6z" fill="#FFD36A"/>
+            </svg>
+            <span><small>Coming soon on</small><strong>Google Play</strong></span>
+          </span>
+          <span class="store-badge" role="img" aria-label="Coming soon on the App Store">
+            <svg viewBox="0 0 42 42" aria-hidden="true" focusable="false">
+              <path d="M25.4 8.7c1.4-1.6 2.4-3.8 2.1-5.9-2 .1-4.3 1.3-5.8 2.9-1.3 1.5-2.5 3.8-2.2 5.8 2.3.2 4.5-1.1 5.9-2.8z" fill="currentColor"/>
+              <path d="M33.2 29.7c-.9 2-1.4 2.9-2.6 4.7-1.7 2.5-4.1 5.5-7 5.5-2.6 0-3.3-1.7-6.8-1.7s-4.3 1.7-6.8 1.8c-3 .1-5.2-3.2-6.9-5.7-4.7-6.8-5.2-14.8-2.3-19 2.1-3 5.3-4.8 8.4-4.8 3.2 0 5.2 1.7 7.8 1.7 2.5 0 4.1-1.8 7.8-1.8 2.8 0 5.8 1.5 7.8 4.2-6.8 3.7-5.7 13.4.6 15.1z" fill="currentColor"/>
+            </svg>
+            <span><small>Coming soon on</small><strong>App Store</strong></span>
+          </span>
+        </div>
+      </div>
+    `;
+    footer.before(appSection);
+    if (window.location.hash === '#app-coming-soon') {
+      appSection.scrollIntoView({ block: 'start' });
+    }
+  }
+
   const quickLinksHeading = Array.from(footer.querySelectorAll('h3')).find((heading) => heading.textContent.trim().toLowerCase() === 'quick links');
   const quickLinks = quickLinksHeading?.parentElement;
   if (quickLinks && !quickLinks.querySelector('a[href="proposal-library.html"]')) {
