@@ -1,0 +1,21 @@
+{
+  "name": "Kissan Retail Sathi",
+  "short_name": "KRS",
+  "description": "Closed-loop agritech value network for farmer protection, cold-chain freshness, and direct retail access.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#FFF8EA",
+  "theme_color": "#0F7A3B",
+  "icons": [
+    {
+      "src": "assets/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
