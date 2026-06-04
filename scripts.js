@@ -31,7 +31,7 @@ if (headerElement && !document.querySelector('.top-contact-bar')) {
     <span>Kishan Retail Sathi</span>
     <div class="top-contact-group">
       <span>Call: +91-7854954845</span>
-      <span>Email: info@kisanretailsathi.com</span>
+      <span>Email: info@kishanretailsathi.com</span>
     </div>
   `;
   headerElement.before(topBar);
