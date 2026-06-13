@@ -1,4 +1,4 @@
-const navToggle = document.querySelector('[data-nav-toggle]');
+﻿const navToggle = document.querySelector('[data-nav-toggle]');
 const nav = document.querySelector('[data-nav]');
 const revealItems = document.querySelectorAll('.reveal');
 const canonicalNavItems = [
@@ -12,6 +12,13 @@ const canonicalNavItems = [
   ['contact.html', 'Contact KRS']
 ];
 
+const krsContact = {
+  phone: '+91-7854954845',
+  tel: '+917854954845',
+  email: 'info@kishanretailsathi.com',
+  whatsapp: 'https://wa.me/917854954845?text=Hello%20KRS%2C%20I%20would%20like%20to%20discuss%20a%20partnership.'
+};
+
 if (nav) {
   const currentPage = (window.location.pathname.split('/').pop() || 'index.html').toLowerCase();
   nav.innerHTML = canonicalNavItems.map(([href, label]) => {
@@ -19,7 +26,8 @@ if (nav) {
     if (href.toLowerCase() === currentPage) classes.push('active');
     if (href === 'contact.html') classes.push('nav-cta');
     const classAttr = classes.length ? ` class="${classes.join(' ')}"` : '';
-    return `<a${classAttr} href="${href}">${label}</a>`;
+    const currentAttr = href.toLowerCase() === currentPage ? ' aria-current="page"' : '';
+    return `<a${classAttr}${currentAttr} href="${href}">${label}</a>`;
   }).join('');
 }
 
@@ -36,6 +44,11 @@ if (headerElement && !document.querySelector('.top-contact-bar')) {
   `;
   headerElement.before(topBar);
 }
+
+document.querySelectorAll('img').forEach((image, index) => {
+  image.decoding = 'async';
+  if (index > 0 && !image.hasAttribute('loading')) image.loading = 'lazy';
+});
 
 document.querySelectorAll('.official-footer').forEach((footer) => {
   if (!document.querySelector('.app-coming-soon')) {
@@ -104,7 +117,7 @@ document.querySelectorAll('.official-footer').forEach((footer) => {
     <div class="footer-socials" aria-label="Social links">
       <a href="#" aria-label="LinkedIn">in</a>
       <a href="#" aria-label="X">X</a>
-      <a href="#" aria-label="YouTube">▶</a>
+      <a href="#" aria-label="YouTube">YT</a>
     </div>
   `;
   footer.appendChild(newsletter);
@@ -154,10 +167,27 @@ if (!document.querySelector('.mobile-action-bar')) {
   const mobileActionBar = document.createElement('div');
   mobileActionBar.className = 'mobile-action-bar';
   mobileActionBar.innerHTML = `
-    <a href="tel:+917854954845">Call KRS</a>
+    <a href="tel:${krsContact.tel}">Call KRS</a>
     <a href="contact.html">Contact</a>
   `;
   document.body.appendChild(mobileActionBar);
+}
+
+if (!document.querySelector('.whatsapp-float')) {
+  const whatsappFloat = document.createElement('a');
+  whatsappFloat.className = 'whatsapp-float';
+  whatsappFloat.href = krsContact.whatsapp;
+  whatsappFloat.target = '_blank';
+  whatsappFloat.rel = 'noopener';
+  whatsappFloat.setAttribute('aria-label', 'Chat with KRS on WhatsApp');
+  whatsappFloat.innerHTML = `
+    <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+      <path d="M16 3.5A12.2 12.2 0 0 0 5.5 22l-1.4 5.4 5.5-1.4A12.2 12.2 0 1 0 16 3.5Z" fill="currentColor"/>
+      <path d="M11.8 10.2c-.3-.7-.6-.7-.9-.7h-.7c-.2 0-.7.1-1 .5-.4.4-1.3 1.3-1.3 3.1s1.3 3.6 1.5 3.8c.2.2 2.6 4.2 6.4 5.7 3.2 1.3 3.8 1 4.5.9.7-.1 2.2-.9 2.5-1.8.3-.9.3-1.6.2-1.8-.1-.2-.4-.3-.8-.5l-2.4-1.2c-.4-.1-.7-.2-1 .2-.3.4-1.1 1.3-1.4 1.6-.3.3-.5.3-.9.1-.4-.2-1.8-.7-3.4-2.1-1.3-1.1-2.1-2.5-2.3-2.9-.2-.4 0-.6.2-.8.2-.2.4-.5.6-.7.2-.3.3-.4.4-.7.1-.3.1-.5 0-.7l-1.1-2.8Z" fill="#fff"/>
+    </svg>
+    <span>WhatsApp</span>
+  `;
+  document.body.appendChild(whatsappFloat);
 }
 
 const svgIcon = (paths) => `
@@ -346,3 +376,169 @@ const counterObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.5 });
 
 counters.forEach((counter) => counterObserver.observe(counter));
+
+const insertBeforeFooter = (section) => {
+  const appSection = document.querySelector('.app-coming-soon');
+  const footer = document.querySelector('.official-footer');
+  const target = appSection || footer;
+  if (target) target.before(section);
+};
+
+const makeSection = (className, html) => {
+  const section = document.createElement('section');
+  section.className = className;
+  section.innerHTML = html;
+  return section;
+};
+
+if (pageName === 'index.html' && !document.querySelector('.audience-router')) {
+  const router = makeSection('section audience-router reveal is-visible', `
+    <div>
+      <span class="eyebrow">Choose your partnership path</span>
+      <h2>One KRS network. Different doors for every stakeholder.</h2>
+    </div>
+    <div class="audience-router-grid">
+      <a href="farmers-fpo-panchayat.html"><strong>Farmers & FPOs</strong><span>MSP contracts, training, onboarding</span></a>
+      <a href="franchise-retailers.html"><strong>Retailers</strong><span>Branded outlet opportunity</span></a>
+      <a href="cold-room-partners.html"><strong>Cold Rooms</strong><span>Storage-to-shelf utilization</span></a>
+      <a href="investors.html"><strong>Investors</strong><span>Scale plan and business model</span></a>
+      <a href="government-partnership.html"><strong>Government</strong><span>District pilot readiness</span></a>
+    </div>
+  `);
+  (document.querySelector('.trusted-for-strip') || document.querySelector('.krs-reference-hero'))?.after(router);
+}
+
+if (pageName === 'index.html' && !document.querySelector('.trust-readiness-band')) {
+  const trust = makeSection('section trust-readiness-band reveal is-visible', `
+    <div class="section-heading">
+      <span class="eyebrow">Trust and implementation readiness</span>
+      <h2>Built for serious conversations with district officials, farmer networks, retail partners, and investors.</h2>
+      <p>Every component of KRS is designed to be explained, audited, piloted, and scaled through clear operating roles.</p>
+    </div>
+    <div class="trust-readiness-grid">
+      <article><strong>Registered company</strong><span>Institutional partnership-ready structure</span></article>
+      <article><strong>Odisha pilot blueprint</strong><span>1,000 farmers, 10 outlets, 100 cold rooms, 6-month rollout</span></article>
+      <article><strong>FSSAI in progress</strong><span>Food handling and outlet compliance readiness</span></article>
+      <article><strong>DBT-ready payments</strong><span>Bank-linked digital farmer settlement flows</span></article>
+    </div>
+  `);
+  document.querySelector('.ag-roadmap')?.before(trust);
+}
+
+if (pageName === 'index.html' && !document.querySelector('.rollout-map-section')) {
+  const rollout = makeSection('section rollout-map-section reveal is-visible', `
+    <div class="section-heading">
+      <span class="eyebrow">Odisha to national rollout</span>
+      <h2>A district cluster model that can repeat across Odisha and then state by state.</h2>
+    </div>
+    <div class="rollout-map-shell">
+      <div class="rollout-map-visual" aria-hidden="true">
+        <span class="map-node node-a">Pilot District</span>
+        <span class="map-node node-b">Cold Cluster</span>
+        <span class="map-node node-c">Retail Ring</span>
+        <span class="map-node node-d">State Scale</span>
+      </div>
+      <div class="rollout-map-copy">
+        <article><strong>Month 1-2</strong><span>Farmer onboarding, outlet mapping, storage activation.</span></article>
+        <article><strong>Month 3-4</strong><span>MSP procurement, digital stock visibility, retail counter launch.</span></article>
+        <article><strong>Month 5-6</strong><span>Price stability monitoring, repeat orders, scale proposal.</span></article>
+      </div>
+    </div>
+  `);
+  document.querySelector('.ag-roadmap')?.before(rollout);
+}
+
+const faqContent = {
+  'index.html': [
+    ['What is Kishan Retail Sathi?', 'KRS is a closed-loop agritech value network connecting farmers, cold storage, logistics, branded retail outlets, and consumers.'],
+    ['How does KRS protect farmers?', 'KRS uses fixed MSP-backed procurement, direct digital payments, and cold-chain access to reduce distress sales.'],
+    ['Who can partner with KRS?', 'Farmer groups, FPOs, Panchayats, franchise retailers, cold room owners, district officials, and investors can engage through dedicated partnership paths.'],
+    ['Where is the first pilot planned?', 'The initial pilot is designed for Odisha with 1,000 farmers, 10 outlets, 100 cold rooms, and a 6-month pilot-to-scale timeline.']
+  ],
+  'farmers-fpo-panchayat.html': [
+    ['What do farmers receive?', 'Farmers receive pre-declared MSP confidence, onboarding support, crop guidance, cold storage access, and transparent payment flow.'],
+    ['Can FPOs and Panchayats onboard together?', 'Yes. KRS is designed for cluster-based onboarding through farmer groups, FPOs, Panchayats, and district coordination.']
+  ],
+  'franchise-retailers.html': [
+    ['What support does a retailer get?', 'KRS supports sourcing, cold-chain movement, branding, digital billing, and repeat supply visibility.'],
+    ['Is this suitable for existing shop owners?', 'Yes. Existing shops can upgrade into branded KRS retail formats with supply-chain support.']
+  ],
+  'cold-room-partners.html': [
+    ['How do cold room owners benefit?', 'KRS routes produce from farmer clusters into partner storage and links capacity to planned retail demand.'],
+    ['What are the partnership formats?', 'KRS can work through fixed rent, capacity leasing, revenue sharing, or strategic cluster partnerships.']
+  ],
+  'investors.html': [
+    ['What makes the model scalable?', 'KRS combines MSP procurement, cold-chain inventory, branded retail demand, and data-led planning into a repeatable district model.'],
+    ['What are the primary revenue pillars?', 'Produce trading margins, branded outlet network growth, retailer deposits, cold storage economics, and value-added products.']
+  ],
+  'government-partnership.html': [
+    ['How is KRS government-aligned?', 'The model supports farmer income, digital agriculture, cold storage infrastructure, rural employment, and food price stability.'],
+    ['What can a district pilot measure?', 'Farmer protection, storage utilization, outlet growth, price stability, payment speed, and rollout readiness.']
+  ],
+  'contact.html': [
+    ['How can I contact KRS?', `Call ${krsContact.phone}, email ${krsContact.email}, use the enquiry form, or start a WhatsApp conversation.`],
+    ['What should I include in an enquiry?', 'Mention your role, district or organization, and whether you are exploring farmers, retail, cold storage, government, or investment partnership.']
+  ]
+};
+
+if (!document.querySelector('.faq-section')) {
+  const items = faqContent[pageName] || [
+    ['How does KRS work?', 'KRS connects farmer procurement, cold-chain storage, logistics, retail demand, and digital payments into one operating model.'],
+    ['How do I discuss a partnership?', `Call ${krsContact.phone}, email ${krsContact.email}, or open the contact page.`]
+  ];
+  const faq = makeSection('section faq-section reveal is-visible', `
+    <div class="section-heading">
+      <span class="eyebrow">Frequently asked questions</span>
+      <h2>Clear answers for partners evaluating the KRS model.</h2>
+    </div>
+    <div class="faq-grid">
+      ${items.map(([q, a]) => `<article class="faq-item"><h3>${q}</h3><p>${a}</p></article>`).join('')}
+    </div>
+  `);
+  insertBeforeFooter(faq);
+}
+
+document.querySelectorAll('.contact-form').forEach((form) => {
+  if (!form.querySelector('[name="audience"]')) {
+    const audienceLabel = document.createElement('label');
+    audienceLabel.innerHTML = `
+      Partnership Type
+      <select name="audience">
+        <option value="General Partnership">General Partnership</option>
+        <option value="Farmers / FPO / Panchayat">Farmers / FPO / Panchayat</option>
+        <option value="Franchise Retailer">Franchise Retailer</option>
+        <option value="Cold Room Owner">Cold Room Owner</option>
+        <option value="Investor">Investor</option>
+        <option value="Government / District Pilot">Government / District Pilot</option>
+      </select>
+    `;
+    const messageLabel = form.querySelector('textarea')?.closest('label');
+    if (messageLabel) form.insertBefore(audienceLabel, messageLabel);
+  }
+
+  if (!form.querySelector('.form-direct-actions')) {
+    const directActions = document.createElement('div');
+    directActions.className = 'form-direct-actions';
+    directActions.innerHTML = `
+      <a href="mailto:${krsContact.email}">Email directly</a>
+      <a href="${krsContact.whatsapp}" target="_blank" rel="noopener">Message on WhatsApp</a>
+    `;
+    form.appendChild(directActions);
+  }
+
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const data = new FormData(form);
+    const subject = `KRS Partnership Enquiry - ${data.get('audience') || 'General'}`;
+    const body = [
+      `Name: ${data.get('name') || ''}`,
+      `Organisation: ${data.get('organisation') || ''}`,
+      `Email: ${data.get('email') || ''}`,
+      `Partnership Type: ${data.get('audience') || ''}`,
+      '',
+      data.get('message') || ''
+    ].join('\n');
+    window.location.href = `mailto:${krsContact.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  });
+});
+
