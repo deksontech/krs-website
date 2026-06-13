@@ -1913,6 +1913,83 @@ body {
   }
 }
 
+/* V52 proposal cards: fix title/description/download overlap on all viewports */
+body.v2 .proposal-card,
+body.v2 .docs-card {
+  display: grid !important;
+  grid-template-rows: auto auto auto auto !important;
+  align-content: start !important;
+  gap: 12px !important;
+  min-height: 230px !important;
+  padding: 28px 30px !important;
+}
+
+body.v2 .proposal-grid,
+body.v2 .docs-grid {
+  align-items: start !important;
+}
+
+body.v2 .proposal-card::before,
+body.v2 .docs-card::before {
+  left: 30px !important;
+  right: auto !important;
+  top: 28px !important;
+  width: 58px !important;
+  height: 64px !important;
+  opacity: .26 !important;
+  pointer-events: none !important;
+}
+
+body.v2 .proposal-card span,
+body.v2 .docs-card span {
+  position: relative !important;
+  z-index: 2 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  width: fit-content !important;
+  max-width: 100% !important;
+  min-height: 30px !important;
+  margin: 0 0 42px 0 !important;
+  padding: 7px 12px !important;
+  line-height: 1 !important;
+  white-space: normal !important;
+}
+
+body.v2 .proposal-card strong,
+body.v2 .docs-card strong {
+  align-self: start !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  color: #083B20 !important;
+  line-height: 1.12 !important;
+}
+
+body.v2 .proposal-card small,
+body.v2 .docs-card small {
+  display: block !important;
+  margin: 0 !important;
+  color: #122015 !important;
+  line-height: 1.48 !important;
+}
+
+body.v2 .proposal-card::after,
+body.v2 .docs-card::after {
+  position: static !important;
+  display: inline-flex !important;
+  width: fit-content !important;
+  margin-top: 2px !important;
+  padding: 0 !important;
+  color: #0F7A3B !important;
+  line-height: 1.15 !important;
+}
+
+@media (min-width: 981px) {
+  body.v2 .proposal-card,
+  body.v2 .docs-card {
+    min-height: 220px !important;
+  }
+}
+
 @media (max-width: 1120px) {
   body .site-nav,
   body.v2 .site-nav {
@@ -8133,4 +8210,68 @@ body.v2 .footer-newsletter {
     overflow-wrap: anywhere !important;
     word-break: normal !important;
   }
+}
+
+/* V55 final cascade override for proposal/download cards */
+body.v2 .proposal-grid,
+body.v2 .docs-grid {
+  align-items: start !important;
+}
+
+body.v2 .proposal-card,
+body.v2 .docs-card {
+  display: grid !important;
+  grid-template-rows: auto auto auto auto !important;
+  align-content: start !important;
+  gap: 12px !important;
+  min-height: 0 !important;
+  height: auto !important;
+  padding: 28px 30px !important;
+}
+
+body.v2 .proposal-card::before,
+body.v2 .docs-card::before {
+  left: 30px !important;
+  right: auto !important;
+  top: 28px !important;
+  width: 58px !important;
+  height: 64px !important;
+  opacity: .24 !important;
+  pointer-events: none !important;
+}
+
+body.v2 .proposal-card span,
+body.v2 .docs-card span {
+  position: relative !important;
+  z-index: 2 !important;
+  display: inline-flex !important;
+  width: fit-content !important;
+  max-width: 100% !important;
+  margin: 0 0 42px 0 !important;
+  padding: 7px 12px !important;
+  line-height: 1 !important;
+}
+
+body.v2 .proposal-card strong,
+body.v2 .docs-card strong {
+  align-self: start !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  line-height: 1.12 !important;
+}
+
+body.v2 .proposal-card small,
+body.v2 .docs-card small {
+  margin: 0 !important;
+  line-height: 1.48 !important;
+}
+
+body.v2 .proposal-card::after,
+body.v2 .docs-card::after {
+  position: static !important;
+  display: inline-flex !important;
+  width: fit-content !important;
+  margin-top: 2px !important;
+  padding: 0 !important;
+  line-height: 1.15 !important;
 }
