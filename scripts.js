@@ -400,7 +400,7 @@ if (pageName === 'index.html' && !document.querySelector('.audience-router')) {
     <div class="audience-router-grid">
       <a href="farmers-fpo-panchayat.html"><strong>Farmers & FPOs</strong><span>MSP contracts, training, onboarding</span></a>
       <a href="franchise-retailers.html"><strong>Retailers</strong><span>Branded outlet opportunity</span></a>
-      <a href="cold-room-partners.html"><strong>Cold Rooms</strong><span>Storage-to-shelf utilization</span></a>
+      <a href="cold-room-partners.html"><strong>Cold Rooms</strong><span>Cold storage</span></a>
       <a href="investors.html"><strong>Investors</strong><span>Scale plan and business model</span></a>
       <a href="government-partnership.html"><strong>Government</strong><span>District pilot readiness</span></a>
     </div>
